@@ -35,28 +35,32 @@ const getUserInfo = async (req,res)=>{
 //testing the device detect 
 
 
-//this part is for the admin to get all the information of a perticular user //......
+//this part is for the admin to get all the information of the users //......
 //for user info
-const winInfoList = async (req, res)=>{
-  console.log(req.params.link)
+const getAllApplicant = async (req, res)=>{
+  // console.log(req.params.link)
   try{
-    const info = await User.find().sort([['count', 'descending']]).limit(10)
+    const info = await User.find({})
     res.json({response:info});
   }catch(err){
     console.log(err)
   }
 }
-//update the users status
 
+//update the users status
 const updateStatus = async (req, res)=>{
-  let id = "6294d0c0779aace4dbc78962";
+  let id = req.body.id
+  // console.log(id)
+  // let id = "6294d0c0779aace4dbc78962";
   try{
-    let updateStudStatus = { $set: {status: 'admited' } };
+    let updateStudStatus = { $set: {status: 'admit' } };
     let upd = await User.updateOne({_id:id},  updateStudStatus)
-    res.json(upd);
+    if(upd){
+      res.json({message: 'Approve'});
+    }
   }catch(err){
     console.log(err)
   }
 }
 
-module.exports = {login, winInfoList, getUserInfo, updateStatus};
+module.exports = {login, getAllApplicant, getUserInfo, updateStatus};

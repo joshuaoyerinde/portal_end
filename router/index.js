@@ -88,6 +88,6 @@ router.get('/user_profile/:id', Auth.getUserInfo)//student profile
 
 //for the admin part ....
 router.patch('/upd', Auth.updateStatus)
-router.get('/info', Auth.winInfoList)
+router.get('/info', Auth.getAllApplicant)
 
 module.exports = router       
