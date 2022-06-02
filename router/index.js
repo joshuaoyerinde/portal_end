@@ -10,9 +10,9 @@ const { TOKEN_KEY } = process.env
 
 const storage = multer.diskStorage({
   // inserting  uploading files into the destination ......
-  destination: function (req, file, cb){
-      cb(null, './uploads/');
-  },
+//   destination: function (req, file, cb){
+//       cb(null, './uploads/');
+//   },
   filename: function(req, file, cb){
       cb(null, new Date().toISOString() + file.originalname)
   }   
@@ -89,5 +89,6 @@ router.get('/user_profile/:id', Auth.getUserInfo)//student profile
 //for the admin part ....
 router.patch('/upd', Auth.updateStatus)
 router.get('/info', Auth.getAllApplicant)
+router.get('/admit', Auth.getAdmittedStd)
 
 module.exports = router       

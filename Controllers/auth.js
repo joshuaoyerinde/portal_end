@@ -33,7 +33,15 @@ const getUserInfo = async (req,res)=>{
     }
 }
 //testing the device detect 
-
+const getAdmittedStd = async (req,res)=>{
+  try{
+    // let id = req.params.id
+    let userinfo = await User.find({status:'admit'})
+    res.json({response: userinfo});
+  }catch(err){
+    console.log(err)
+  }
+}
 
 //this part is for the admin to get all the information of the users //......
 //for user info
@@ -46,6 +54,7 @@ const getAllApplicant = async (req, res)=>{
     console.log(err)
   }
 }
+
 
 //update the users status
 const updateStatus = async (req, res)=>{
@@ -63,4 +72,4 @@ const updateStatus = async (req, res)=>{
   }
 }
 
-module.exports = {login, getAllApplicant, getUserInfo, updateStatus};
+module.exports = {login, getAllApplicant, getUserInfo, updateStatus, getAdmittedStd};

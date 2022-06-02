@@ -31,6 +31,9 @@ mongoose.connect(MONGO_URI,{ useNewUrlParser: true, useUnifiedTopology: true })
 app.use(cors({origin:'*'}))
 
 
+app.get('/', (req,res)=>{
+    res.send('hello josh')
+})
 
 // initiallizing the app ......
 app.use('/api', route)
